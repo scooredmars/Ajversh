@@ -1,0 +1,42 @@
+.pointing {
+    background-color: #76008a !important;
+    flex-wrap: wrap;
+    min-height: 6vh !important;
+
+    .item {
+        color: white;
+        font-size: 1.3em;
+        padding: 1.2em 1.3em !important;
+    }
+
+    .item:hover{
+        background-color: #9e00b9 !important;
+    }
+
+    .inline {
+        .text {
+            font-size: 1.25em;
+            padding-right: 5px;
+        }
+
+        .menu {
+            background-color: rgba(158, 158, 158, 0.904);
+            border: none;
+            font-size: 1.16em;
+            margin-top: 0.5em !important;
+        }
+    }
+
+    .right.menu > .ui.item{
+        color: white;
+    }
+
+    .ui .ui.dropdown .menu>.item {
+        color: white !important;
+    }
+
+    .ui .ui.dropdown .menu>.item:hover {
+        background-color: #b900da !important;
+        color: white !important;
+    }
+}
