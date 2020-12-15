@@ -19,7 +19,11 @@
     </head>
 
     <body>
-        {% block content %}{% endblock %}
+        <div class="home-container">
+            {% include "layouts/navbar.html" %}
+            {% block content %}{% endblock %}
+            {% include "layouts/footer.html" %}
+        </div>
     </body>
 </html>
 {% endspaceless %}

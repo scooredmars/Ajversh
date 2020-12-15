@@ -1,8 +1,26 @@
-h1{
-    text-align: center;
-    padding-top: 15%;
+body {
+    background-color: #131313;
 }
 
-body{
-    background-color: rgba(128, 128, 128, 0.575);
+.home-container {
+    width: 65%;
+    margin: auto;
+    background-color: #222;
+    min-height: 100vh;
+    position: relative;
+
+    .content {
+        min-height: 84vh;
+    }
+
+    .introduction {
+        font-size: 1.5em;
+        text-align: center;
+        color: white;
+        padding-top: 25%;
+
+        .dc-link:hover {
+            text-decoration: underline;
+        }
+    }
 }
