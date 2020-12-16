@@ -21,7 +21,9 @@
     <body>
         <div class="home-container">
             {% include "layouts/navbar.html" %}
-            {% block content %}{% endblock %}
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
             {% include "layouts/footer.html" %}
         </div>
     </body>
