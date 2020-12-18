@@ -7,6 +7,8 @@ SECRET_KEY = 'uchxuj(ontb78q0lv2=t2t2u*+%#_ahl$ge)a3@)slm5eqoqx)'
 
 DEBUG = True
 
+SITE_ID = 1
+
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
@@ -18,6 +20,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ajversh',
     'compressor',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +65,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -113,3 +124,13 @@ COMPRESS_PRECOMPILERS = (
 )
 
 COMPRESS_OFFLINE = True
+
+LOGIN_REDIRECT_URL = "/"
+
+ACCOUNT_AUTHENTICATION_METHOD = "username"
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
+ACCOUNT_SESSION_REMEMBER = "none"
+
+ACCOUNT_ADAPTER = 'ajversh.adapter.NoNewUsersAccountAdapter'
