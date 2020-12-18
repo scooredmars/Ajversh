@@ -11,5 +11,4 @@ urlpatterns = [
     path("account", views.profile_view, name="account"),
     path("edit", views.edit_view, name="edit"),
     path("messages", views.messages_view, name="messages"),
-    path("logout", views.logout_view, name="logout"),
 ]

@@ -23,6 +23,3 @@ def edit_view(request):
 
 def messages_view(request):
     return render(request, "user/messages.html")
-
-def logout_view(request):
-    pass
