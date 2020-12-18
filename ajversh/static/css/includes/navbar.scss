@@ -40,3 +40,21 @@
         color: white !important;
     }
 }
+
+.actions{
+    justify-content: center;
+
+    .custom-logout{
+        background-color: rgba(255, 255, 255, 0);
+        border: none;
+    }
+    
+    .custom-logout:focus{
+        outline: none;
+    }
+
+    .cancel{
+        height: 100%;
+        margin-top: .1em;
+    }
+}

@@ -1,9 +1,10 @@
 {% load static %}
 
-    <div class="ui secondary pointing menu">
-        <a href="/" class="item">
-            Home
-        </a>
+<div class="ui secondary pointing menu">
+    <a href="/" class="item">
+        Home
+    </a>
+    {% if user.is_authenticated %}
         <a href="sets" class="item">
             Lista setów
         </a>
@@ -16,8 +17,10 @@
         <a href="dc-settings" class="item">
             Ustawienia botow dc
         </a>
-        <div class="right menu">
-            <div class="ui item">
+    {% endif %}
+    <div class="right menu">
+        <div class="ui item">
+            {% if user.is_authenticated %}
                 <div class="ui inline dropdown">
                     <div class="text">
                         Profile name
@@ -33,19 +36,17 @@
                         <a href="messages" class="item">
                             Wiadomości
                         </a>
-                        <a href="logout" class="item">
-                            Wyloguj
-                        </a>
+                        <a class="item quit">Wyloguj</a>
+                        {% include "user/quit.html" %}
                     </div>
                 </div>
-            </div>
+            {% else %}
+                <div class="login">
+                    <a href="login">Zaloguj</a>
+                </div>
+            {% endif %}
         </div>
     </div>
+</div>
 
-<script>
-$('.dropdown')
-    .dropdown({
-        action: 'hide'
-    })
-;
-</script>
+<script src="{% static "js/modal.js" %}"></script>
