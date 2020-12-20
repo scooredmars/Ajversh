@@ -1,0 +1,38 @@
+{% extends "layouts/default.html" %}
+
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="ui placeholder segment login">
+  <div class="ui two column stackable center aligned grid">
+    <div class="middle aligned row">
+      <div class="column">
+        <div class="ui icon header white">
+          <i class="user outline icon"></i>
+          Witamy z powrotem!
+        </div>
+        <div class="field">
+          <div class="ui search">
+            <div class="ui icon input">
+              <form class="white" method="POST" action="{% url 'account_login' %}">
+                {% csrf_token %}
+                <div class="field-wrap">
+                  {{ form.as_p }}
+                  {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                  {% endif %}
+                </div>
+                <button class="ui primary button" type="submit">
+                  Zaloguj
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
