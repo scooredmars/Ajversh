@@ -5,47 +5,49 @@
         Home
     </a>
     {% if user.is_authenticated %}
-        <a href="sets" class="item">
+        <a href="{% url 'ajversh:sets' %}" class="item">
             Lista setów
         </a>
-        <a href="guild" class="item">
+        <a href="{% url 'ajversh:guild' %}" class="item">
             Gildia
         </a>
-        <a href="creator" class="item">
+        <a href="{% url 'ajversh:creator' %}" class="item">
             Kreator setow
         </a>
-        <a href="dc-settings" class="item">
+        <a href="{% url 'ajversh:dc-settings' %}" class="item">
             Ustawienia botow dc
         </a>
     {% endif %}
     <div class="right menu">
-        <div class="ui item">
-            {% if user.is_authenticated %}
-                <div class="ui inline dropdown">
-                    <div class="text">
-                        Profile name
-                    </div>
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <a href="account" class="item">
-                            Moje konto
-                        </a>
-                        <a href="edit" class="item">
-                            Edytuj profil
-                        </a>
-                        <a href="messages" class="item">
-                            Wiadomości
-                        </a>
-                        <a class="item quit">Wyloguj</a>
-                        {% include "user/quit.html" %}
+        {% if user.is_authenticated %}
+            <div class="ui item inline dropdown">
+                <div class="text">
+                    {{ user }}
+                </div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a href="{% url 'ajversh:account' %}" class="item">
+                        Moje konto
+                    </a>
+                    <a href="{% url 'ajversh:edit' %}" class="item">
+                        Edytuj profil
+                    </a>
+                    <a href="{% url 'ajversh:messages' %}" class="item">
+                        Wiadomości
+                    </a>
+                    <a class="item quit">Wyloguj</a>
+                    {% include "user/quit.html" %}
+                </div>
+            </div>
+        {% else %}
+            <a href="{% url 'account_login' %}">
+                <div class="ui item">
+                    <div class="login white">
+                        Zaloguj
                     </div>
                 </div>
-            {% else %}
-                <div class="login">
-                    <a href="login">Zaloguj</a>
-                </div>
-            {% endif %}
-        </div>
+            </a>
+        {% endif %}
     </div>
 </div>
 
