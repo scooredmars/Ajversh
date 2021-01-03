@@ -5,6 +5,118 @@
 {% block title %}Kreator Setów{% endblock %}
 
 {% block content %}
-
+<div class="ui placeholder segment transparent create">
+    <div class="ui two column stackable center aligned grid">
+        <div class="middle aligned row">
+            <div class="column">
+                <div class="ui icon header white set"></div>
+                <div class="field">
+                    <div class="ui search">
+                        <div class="results"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="item-container">
+                        <div class="item flex center">
+                            <div class="object text">
+                                Nazwa Buildu: &nbsp;
+                            </div>
+                            <div class="object">
+                                {{ form.name_build }}
+                            </div>
+                        </div>
+                        <div class="item flex center">
+                            <div class="object text">
+                                Kategoria: &nbsp;
+                            </div>
+                            <div class="object">
+                                {{ form.category }}
+                            </div>
+                        </div>
+                        <div class="item flex end">
+                            <div class="object text">
+                                Głowa: &nbsp;
+                            </div>
+                            <div class="object">
+                                {{ form.head }}
+                            </div>
+                            <div class="object">
+                                {{ form.head_tier }}
+                            </div>
+                        </div>
+                        <div class="item flex end">
+                            <div class="object text">
+                                Klata: &nbsp;
+                            </div>
+                            <div class="object">
+                                {{ form.chest }}
+                            </div>
+                            <div class="object">
+                                {{ form.chest_tier }}
+                            </div>
+                        </div>
+                        <div class="item flex end">
+                            <div class="object text">
+                                Buty: &nbsp;
+                            </div>
+                            <div class="object">
+                                {{ form.boots }}
+                            </div>
+                            <div class="object">
+                                {{ form.boots_tier }}
+                            </div>
+                        </div>
+                        <div class="item flex end">
+                            <div class="object text">
+                                Broń Główna: &nbsp;
+                            </div>
+                            <div class="object">
+                                {{ form.hand }}
+                            </div>
+                            <div class="object">
+                                {{ form.hand_tier }}
+                            </div>
+                        </div>
+                        <div class="item flex end">
+                            <div class="object text">
+                                Broń Poboczna: &nbsp;
+                            </div>
+                            <div class="object">
+                                {{ form.second_hand }}
+                            </div>
+                            <div class="object">
+                                {{ form.second_hand_tier }}
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    {{ form.non_field_errors }}
+                    <input class="create-btn" type="submit" value="Zapisz">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous">
+</script>
+<script>
+    $(document).ready(function () {
+        $("input[type=radio][name=visibility]").change(function () { //specifying onchange function for input of type radio and name visibility
+            console.log("Change!")
+            if (this.value == "private") { //if the new value is private
+                $("#password_text").prop('disabled', true);//would recommend readonly instead of disable for form integrity
+                console.log("Disabling");
+            }else{ //if the new value is anything else
+                    $("#password_text").prop('disabled', false);
+                    console.log("Enabling");
+                }
+        });
+    });
+</script>
 {% endblock %}
-

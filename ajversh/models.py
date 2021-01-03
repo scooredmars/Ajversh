@@ -76,29 +76,29 @@ class Build(models.Model):
     )
     name_build = models.CharField(max_length=50)
     category = models.CharField(max_length=50, choices=NAME, null=True)
-    head = models.OneToOneField(
+    head = models.ForeignKey(
         'ajversh.Item', on_delete=models.CASCADE, related_name='head_item', null=True)
-    head_tier = models.OneToOneField(
+    head_tier = models.ForeignKey(
         'ajversh.Tier', on_delete=models.CASCADE, related_name='head_tier', null=True)
 
-    chest = models.OneToOneField(
+    chest = models.ForeignKey(
         'ajversh.Item', on_delete=models.CASCADE, related_name='chest_item', null=True)
-    chest_tier = models.OneToOneField(
+    chest_tier = models.ForeignKey(
         'ajversh.Tier', on_delete=models.CASCADE, related_name='chest_tier', null=True)
 
-    boots = models.OneToOneField(
+    boots = models.ForeignKey(
         'ajversh.Item', on_delete=models.CASCADE, related_name='boots_item', null=True)
-    boots_tier = models.OneToOneField(
+    boots_tier = models.ForeignKey(
         'ajversh.Tier', on_delete=models.CASCADE, related_name='boots_tier', null=True)
 
-    hand = models.OneToOneField(
+    hand = models.ForeignKey(
         'ajversh.Item', on_delete=models.CASCADE, related_name='hand_item', null=True)
-    hand_tier = models.OneToOneField(
+    hand_tier = models.ForeignKey(
         'ajversh.Tier', on_delete=models.CASCADE, related_name='hand_tier', null=True)
 
-    second_hand = models.OneToOneField(
+    second_hand = models.ForeignKey(
         'ajversh.Item', on_delete=models.CASCADE, related_name='second_hand_item', blank=True, null=True)
-    second_hand_tier = models.OneToOneField(
+    second_hand_tier = models.ForeignKey(
         'ajversh.Tier', on_delete=models.CASCADE, related_name='second_hand_tier', blank=True, null=True)
 
     def __str__(self):

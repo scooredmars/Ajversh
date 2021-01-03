@@ -6,5 +6,11 @@
 
 {% block content %}
 
+    {% for build in all_builds %}
+        {{ build }}
+        {{ build.category }}
+        <br>
+    {% endfor %}
+
 {% endblock %}
 
