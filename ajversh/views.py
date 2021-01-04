@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .forms import CreateBuildForm
-from django.http import HttpResponseRedirect
-from .models import Build
+from django.http import HttpResponseRedirect, JsonResponse
+from .models import Build, Item
+import json
 
 
 def home_view(request):
@@ -33,6 +34,19 @@ def sets_creator_view(request):
     }
     return render(request, "user/creator.html", context)
 
+
+def validation_weapon_form(request):
+    body_data = json.loads(request.body)
+    item_id = body_data['itemId']
+    lock_second_hand = False
+
+    if item_id:
+        current_item = Item.objects.get(id=item_id)
+
+        if current_item.set_part == "Broń dwuręczna":
+            lock_second_hand = True
+
+    return JsonResponse(lock_second_hand, safe=False)
 
 def dc_settings_view(request):
     return render(request, "user/dc-settings.html")

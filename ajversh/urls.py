@@ -7,6 +7,7 @@ urlpatterns = [
     path("sets", views.sets_list_view, name="sets"),
     path("guild", views.guild_view, name="guild"),
     path("creator", views.sets_creator_view, name="creator"),
+    path("form-change", views.validation_weapon_form, name="form-change"),
     path("dc-settings", views.dc_settings_view, name="dc-settings"),
     path("account", views.profile_view, name="account"),
     path("edit", views.edit_view, name="edit"),

@@ -107,15 +107,45 @@
 </script>
 <script>
     $(document).ready(function () {
-        $("input[type=radio][name=visibility]").change(function () { //specifying onchange function for input of type radio and name visibility
-            console.log("Change!")
-            if (this.value == "private") { //if the new value is private
-                $("#password_text").prop('disabled', true);//would recommend readonly instead of disable for form integrity
-                console.log("Disabling");
-            }else{ //if the new value is anything else
-                    $("#password_text").prop('disabled', false);
-                    console.log("Enabling");
+        $("select[class=select-build][id=id_hand]").change(function () {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
                 }
+                return cookieValue;
+            }
+
+            var itemId = this.value;
+            var csrftoken = getCookie('csrftoken');
+
+            var url = "{% url 'ajversh:form-change' %}"
+            fetch(url, {
+                method:'POST',
+                headers:{
+                    'Content-type':'application/json',
+                    'X-CSRFToken':csrftoken,
+                },
+                body:JSON.stringify({'itemId':itemId,})
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result == true) { 
+                    $("#id_second_hand").prop('disabled', true);
+                    $("#id_second_hand_tier").prop('disabled', true);
+                }
+                else {
+                    $("#id_second_hand").prop('disabled', false);
+                    $("#id_second_hand_tier").prop('disabled', false);
+                }
+            })
         });
     });
 </script>
