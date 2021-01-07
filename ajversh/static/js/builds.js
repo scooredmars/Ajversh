@@ -1,2 +1,0 @@
-$('.ui.accordion')
-    .accordion();
