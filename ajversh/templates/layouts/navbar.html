@@ -5,9 +5,28 @@
         Home
     </a>
     {% if user.is_authenticated %}
-        <a href="{% url 'ajversh:sets' %}" class="item">
-            Lista setów
-        </a>
+        <div class="ui item inline dropdown">
+            <div>
+                Lista setów
+            </div>
+            <div class="menu">
+                <a href="{% url 'ajversh:solo' %}" class="item">
+                    Solo Dungi
+                </a>
+                <a href="{% url 'ajversh:group' %}" class="item">
+                    Grupowe Dungi
+                </a>
+                <a href="{% url 'ajversh:pvp' %}" class="item">
+                    PVP
+                </a>
+                <a href="{% url 'ajversh:zvz' %}" class="item">
+                    ZVZ
+                </a>
+                <a href="{% url 'ajversh:avalon' %}" class="item">
+                    Avalon
+                </a>
+            </div>
+        </div>
         <a href="{% url 'ajversh:guild' %}" class="item">
             Gildia
         </a>
