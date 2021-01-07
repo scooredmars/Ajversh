@@ -1,0 +1,55 @@
+.builds{
+    width: 100%;
+    display: flex;
+
+    .left, .right{
+        width: 50%;
+    }
+
+    .item{
+        text-align: center;
+        margin-top: 2.5em;
+
+        .title{
+            font-size: 1.2em !important;
+        }
+
+        img{
+            width: 50px;
+        }
+
+        .border{
+            width: 60%;
+            border-bottom: 1px solid rgba(88, 88, 88, 0.521);
+            margin: auto;
+            padding-top: .4em;
+        }
+
+        a{
+            display: block;
+            font-size: 1.1em;
+            margin-bottom: .7em;
+            padding-top: .3em;
+        }
+
+        .link{
+            margin-bottom: .4em;
+            font-size: 1.1em;
+        }
+    }
+}
+
+.description{
+    display: flex;
+
+    .left-imgs{
+        background-image: url("/static/img/set.png");
+        background-repeat: no-repeat;
+        width: 500px;
+        height: 520px;
+    }
+}
+
+.ui.modal.info, .ui.modal>.header{
+    background-color: rgba(112, 112, 112, 0.836);
+}

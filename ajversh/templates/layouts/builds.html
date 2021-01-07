@@ -1,0 +1,21 @@
+<div class="item">
+    <div class="ui accordion">
+        <div class="title white">
+            <i class="dropdown icon"></i>
+            {{ build }}
+        </div>
+        <div class="content">
+            <div class="link" onclick="moreInfo('{{ build.id }}')">
+                Pokaż więcej!
+            </div>
+            <img src="media/{{ build.head.img }}" title="{{ build.head }}">
+            <img src="media/{{ build.chest.img }}" title="{{ build.chest }}">
+            <img src="media/{{ build.boots.img }}" title="{{ build.boots }}">
+            <img src="media/{{ build.hand.img }}" title="{{ build.hand }}">
+            {% if build.second_hand %}
+                <img src="media/{{ build.second_hand.img }}" title="{{ build.second_hand }}">
+            {% endif %}
+        </div>
+        <div class="border"></div>
+    </div>
+</div>

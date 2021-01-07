@@ -3,7 +3,7 @@ from django.db import models
 
 class Spell(models.Model):
     name = models.CharField(max_length=50)
-    img = models.ImageField(blank=True)
+    img = models.ImageField(blank=True, upload_to='spell')
     description = models.TextField()
 
     def __str__(self):
@@ -12,7 +12,7 @@ class Spell(models.Model):
 
 class Pasive(models.Model):
     name = models.CharField(max_length=50)
-    img = models.ImageField(blank=True)
+    img = models.ImageField(blank=True, upload_to='pasive')
     description = models.TextField()
 
     def __str__(self):
@@ -57,9 +57,9 @@ class Item(models.Model):
         ('Druga broń', 'Druga broń'),
     )
     name = models.CharField(max_length=50)
-    img = models.ImageField(blank=True)
-    spells = models.ManyToManyField('ajversh.Spell')
-    pasives = models.ManyToManyField('ajversh.Pasive')
+    img = models.ImageField(blank=True, upload_to='items')
+    spells = models.ManyToManyField('ajversh.Spell', blank=True)
+    pasives = models.ManyToManyField('ajversh.Pasive', blank=True)
     set_part = models.CharField(max_length=20, choices=PART)
 
     def __str__(self):
