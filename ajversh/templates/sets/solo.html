@@ -1,0 +1,93 @@
+{% extends "layouts/default.html" %}
+
+{% load static %}
+
+{% block title %}Solo Dungi{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="builds">
+            <div class="ui modal info">
+                <div class="header">
+                    <div class="txt"></div>
+                </div>
+                <div class="modal-div-form">
+                    <div class="description">
+                        <div class="left"></div>
+                        <div class="right"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="left">
+            {% for build in solo_builds %}
+                {% if build.id|divisibleby:"2" %}
+                    {% include "layouts/builds.html" %}
+                {% endif %}
+            {% endfor %}
+            </div>
+            <div class="right">
+            {% for build in solo_builds %}
+                {% if build.id|divisibleby:"2" %}
+                {% else %}
+                    {% include "layouts/builds.html" %}
+                {% endif %}
+            {% endfor %}
+            </div>
+            <script src="{% static "js/modal.js" %}"></script>
+            <script>
+                function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+                }
+                var csrftoken = getCookie('csrftoken');
+                function moreInfo(buildId){
+                    var url = "{% url 'ajversh:build-info' %}";
+                    fetch(url, {
+                        method:'POST',
+                        headers:{
+                            'Content-type':'application/json',
+                            'X-CSRFToken':csrftoken,
+                        },
+                        body:JSON.stringify({'buildId':buildId})
+                    })
+                    .then((resp) => resp.json())
+                    .then(function(data) {
+                        $(".txt").remove();
+                        $(".data").remove();
+                        $(".header").append('<div class="txt">' + data.name + '</div>');
+                        $(".description").append('<div class="data">' + data.head + '</div>');
+                        $(".data").append(data.head_t);
+                        $(".data").append('<img src="' + data.head_img + '" title="' + data.head + '" width="100px" style="position: absolute; top: 116px; left: 190px;">');
+                        $(".data").append(data.chest);
+                        $(".data").append(data.chest_t);
+                        $(".data").append('<img src="' + data.chest_img + '" title="' + data.chest + '" width="100px" style="position: absolute; top: 227px; left: 190px;">');
+                        $(".data").append(data.boots);
+                        $(".data").append(data.boots_t);
+                        $(".data").append('<img src="' + data.boots_img + '" title="' + data.boots + '" width="100px" style="position: absolute; top: 339px; left: 190px;">');
+                        $(".data").append(data.hand);
+                        $(".data").append(data.hand_t);
+                        $(".data").append('<img src="' + data.hand_img + '" title="' + data.hand + '" width="100px" style="position: absolute; top: 227px; left: 62px;">');
+                        $(".data").append(data.second_hand);
+                        $(".data").append(data.second_hand_tier);
+                        if (data.second_hand_img != undefined ) {
+                            $(".data").append('<img src="' + data.second_hand_img + '" title="' + data.second_hand + '" width="100px" style="position: absolute; top: 227px; left: 320px;">');
+                        }
+                    })
+                }
+            </script>
+        </div>
+    {% else %}
+        nie dla psa kiełbasa(EasterEgg)
+    {% endif %}
+{% endblock %}
+
