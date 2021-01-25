@@ -8,7 +8,7 @@ class CreateBuildForm(forms.ModelForm):
     class Meta:
         model = Build
         fields = ('name_build', 'category', 'head', 'head_tier', 'chest', 'chest_tier',
-                  'boots', 'boots_tier', 'hand', 'hand_tier', 'second_hand', 'second_hand_tier')
+                  'boots', 'boots_tier', 'hand', 'hand_tier', 'off_hand', 'off_hand_tier')
     head_spells = forms.ChoiceField()
 
     def __init__(self, *args, **kwargs):
@@ -18,7 +18,7 @@ class CreateBuildForm(forms.ModelForm):
         self.fields['boots'].queryset = Item.objects.filter(set_part='Nogi')
         self.fields['hand'].queryset = Item.objects.filter(
             set_part__in=['Broń jednoręczna', 'Broń dwuręczna'])
-        self.fields['second_hand'].queryset = Item.objects.filter(
+        self.fields['off_hand'].queryset = Item.objects.filter(
             set_part='Druga broń')
 
         self.fields["category"].widget.attrs.update({"class": "select-build"})
@@ -26,7 +26,7 @@ class CreateBuildForm(forms.ModelForm):
         self.fields["chest"].widget.attrs.update({"class": "select-build"})
         self.fields["boots"].widget.attrs.update({"class": "select-build"})
         self.fields["hand"].widget.attrs.update({"class": "select-build"})
-        self.fields["second_hand"].widget.attrs.update(
+        self.fields["off_hand"].widget.attrs.update(
             {"class": "select-build"})
 
     def clean(self, *args, **keyargs):

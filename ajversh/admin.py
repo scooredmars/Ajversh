@@ -41,7 +41,7 @@ class BuildAdmin(admin.ModelAdmin):
         "chest",
         "boots",
         "hand",
-        "second_hand",
+        "off_hand",
     )
     list_filter = ("category",)
     search_fields = ["name_build"]

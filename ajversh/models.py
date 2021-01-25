@@ -54,12 +54,17 @@ class Item(models.Model):
         ('Nogi', 'Nogi'),
         ('Broń jednoręczna', 'Broń jednoręczna'),
         ('Broń dwuręczna', 'Broń dwuręczna'),
-        ('Druga broń', 'Druga broń'),
+        ('Druga ręka', 'Druga ręka'),
     )
     name = models.CharField(max_length=50)
     img = models.ImageField(blank=True, upload_to='items')
-    spells = models.ManyToManyField('ajversh.Spell', blank=True)
-    pasives = models.ManyToManyField('ajversh.Pasive', blank=True)
+    q = models.ManyToManyField('ajversh.Spell', related_name='q_spell', blank=True)
+    w = models.ManyToManyField('ajversh.Spell', related_name='w_spell', blank=True)
+    e = models.ManyToManyField('ajversh.Spell', related_name='e_spell', blank=True)
+    r = models.ManyToManyField('ajversh.Spell', related_name='r_spell', blank=True)
+    d = models.ManyToManyField('ajversh.Spell', related_name='d_spell', blank=True)
+    f = models.ManyToManyField('ajversh.Spell', related_name='f_spell', blank=True)
+    pasives = models.ManyToManyField('ajversh.Pasive', related_name='pasive', blank=True)
     set_part = models.CharField(max_length=20, choices=PART)
 
     def __str__(self):
@@ -96,10 +101,10 @@ class Build(models.Model):
     hand_tier = models.ForeignKey(
         'ajversh.Tier', on_delete=models.CASCADE, related_name='hand_tier', null=True)
 
-    second_hand = models.ForeignKey(
-        'ajversh.Item', on_delete=models.CASCADE, related_name='second_hand_item', blank=True, null=True)
-    second_hand_tier = models.ForeignKey(
-        'ajversh.Tier', on_delete=models.CASCADE, related_name='second_hand_tier', blank=True, null=True)
+    off_hand = models.ForeignKey(
+        'ajversh.Item', on_delete=models.CASCADE, related_name='off_hand_item', blank=True, null=True)
+    off_hand_tier = models.ForeignKey(
+        'ajversh.Tier', on_delete=models.CASCADE, related_name='off_hand_tier', blank=True, null=True)
 
     def __str__(self):
         return self.name_build
