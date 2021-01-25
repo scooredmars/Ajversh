@@ -30,16 +30,22 @@ def sets_creator_view(request):
 
 def validation_weapon_form(request):
     body_data = json.loads(request.body)
-    item_id = body_data['itemId']
+    for data in body_data:
+        item_id = body_data[data]
     lock_second_hand = False
 
     if item_id:
         current_item = Item.objects.get(id=item_id)
-
         if current_item.set_part == "Broń dwuręczna":
             lock_second_hand = True
+        print(current_item.spells.all())
 
-    return JsonResponse(lock_second_hand, safe=False)
+    context = {
+        'lock_second_hand': lock_second_hand,
+    }
+
+    return JsonResponse(context, safe=False)
+
 
 
 def dc_settings_view(request):

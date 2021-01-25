@@ -9,6 +9,7 @@ class CreateBuildForm(forms.ModelForm):
         model = Build
         fields = ('name_build', 'category', 'head', 'head_tier', 'chest', 'chest_tier',
                   'boots', 'boots_tier', 'hand', 'hand_tier', 'second_hand', 'second_hand_tier')
+    head_spells = forms.ChoiceField()
 
     def __init__(self, *args, **kwargs):
         super(CreateBuildForm, self).__init__(*args, **kwargs)

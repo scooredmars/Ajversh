@@ -46,6 +46,9 @@
                             <div class="object">
                                 {{ form.head_tier }}
                             </div>
+                            <div class="object">
+                                {{ form.head_spells }}
+                            </div>
                         </div>
                         <div class="item flex end">
                             <div class="object text">
@@ -107,24 +110,24 @@
 </script>
 <script>
     $(document).ready(function () {
-        $("select[class=select-build][id=id_hand]").change(function () {
-            function getCookie(name) {
-                var cookieValue = null;
-                if (document.cookie && document.cookie !== '') {
-                    var cookies = document.cookie.split(';');
-                    for (var i = 0; i < cookies.length; i++) {
-                        var cookie = cookies[i].trim();
-                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
-                        }
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
                     }
                 }
-                return cookieValue;
             }
-
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        $("#id_head_spells").prop('disabled', true);
+        $("select[class=select-build][id=id_hand]").change(function () {
             var itemId = this.value;
-            var csrftoken = getCookie('csrftoken');
 
             var url = "{% url 'ajversh:form-change' %}"
             fetch(url, {
@@ -137,7 +140,7 @@
             })
             .then(response => response.json())
             .then(result => {
-                if (result == true) { 
+                if (result.lock_second_hand == true) { 
                     $("#id_second_hand").prop('disabled', true);
                     $("#id_second_hand_tier").prop('disabled', true);
                 }
@@ -146,6 +149,57 @@
                     $("#id_second_hand_tier").prop('disabled', false);
                 }
             })
+        });
+        $("select[class=select-build][id=id_head]").change(function () {
+            var headId = this.value;
+            if (this.value != ''){
+                $("#id_head_spells").prop('disabled', false);
+            }
+            else{
+                $("#id_head_spells").prop('disabled', true);
+            }
+
+            var url = "{% url 'ajversh:form-change' %}"
+
+            let dropdown = document.getElementById('id_head_spells');
+            dropdown.length = 0;
+
+            let defaultOption = document.createElement('option');
+            defaultOption.text = '---------';
+
+            dropdown.add(defaultOption);
+            dropdown.selectedIndex = 0;
+
+            fetch(url, {
+                method:'POST',
+                headers:{
+                    'Content-type':'application/json',
+                    'X-CSRFToken':csrftoken,
+                },
+                body:JSON.stringify({'headId':headId,})
+            })
+            .then(  
+                function(response) {  
+                    if (response.status !== 200) {  
+                        console.warn('Looks like there was a problem. Status Code: ' + response.status);  
+                        return;
+                    }
+
+                    // Examine the text in the response  
+                    console.log('sd')
+                    response.json().then(function(data) {  
+                        let option;
+                        console.log(data)
+
+                        for (let i = 0; i < data.length; i++) {
+                            option = document.createElement('option');
+                            option.text = data[i].name;
+                            option.value = data[i].abbreviation;
+                            dropdown.add(option);
+                        }    
+                    });  
+                }  
+            )  
         });
     });
 </script>
