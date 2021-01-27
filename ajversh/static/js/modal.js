@@ -13,5 +13,9 @@ $('.ui.modal.info')
     .modal('attach events', '.link', 'show')
 ;
 
+$('.ui.modal.list')
+    .modal('attach events', '.add-item', 'show')
+;
+
 $('.ui.accordion')
     .accordion();
