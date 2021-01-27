@@ -173,7 +173,8 @@
                     $(".description").append(
                         '<div class="item-qs"><div class="object">' + result[i].name + '<div class="data-item"><img src="media/' + 
                         result[i].img + '" title="' + result[i].name + '"><div class="select" onclick="selectPasive(\'' + result[i].img + 
-                        '\',\'' + result[i].name + '\',\'' + pk + '\',\'' + type + '\',\'' + 0 + '\',\'' + result[i].id +'\');">Wybierz</div></div></div></div>');
+                        '\',\'' + result[i].name + '\',\'' + pk + '\',\'' + type + '\',\'' + 0 + '\',\'' + result[i].id +'\');">Wybierz</div></div><div class="desc">'+
+                        result[i].description +'</div></div></div>');
                 }
             })
         }
@@ -196,7 +197,8 @@
                 $(".description").append(
                     '<div class="item-qs"><div class="object">' + result[i].name + '<div class="data-item"><img src="media/' + 
                     result[i].img + '" title="' + result[i].name + '"><div class="select" onclick="selectPasive(\'' + result[i].img + 
-                    '\',\'' + result[i].name + '\',\'' + pk + '\',\'' + type + '\',\'' + loop + '\',\'' + result[i].id +'\');">Wybierz</div></div></div></div>');
+                    '\',\'' + result[i].name + '\',\'' + pk + '\',\'' + type + '\',\'' + loop + '\',\'' + result[i].id +'\');">Wybierz</div></div><div class="desc">'+
+                        result[i].description +'</div></div></div>');
             }
         })
         loop = loop + 1;
@@ -264,7 +266,8 @@
                         $(".description").append(
                             '<div class="item-qs"><div class="object">' + result[i].name + '<div class="data-item"><img src="media/' + 
                             result[i].img + '" title="' + result[i].name + '"><div class="select" onclick="nextPart(\'' + result[i].img + 
-                            '\',\'' + result[i].name + '\',\'' + type + '\',\'' + result[i].id +'\');">Wybierz</div></div></div></div>');
+                            '\',\'' + result[i].name + '\',\'' + type + '\',\'' + result[i].id +'\');">Wybierz</div></div><div class="desc">'+
+                        result[i].description +'</div></div></div>');
                     }
                 }
             })

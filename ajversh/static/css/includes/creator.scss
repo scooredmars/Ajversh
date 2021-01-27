@@ -114,6 +114,9 @@
     font-size: 1.1em;
     color: rgba(255, 255, 255, 0.815);
     transition: .3s;
+    max-width: 30%;
+    height: fit-content;
+    margin: 0 auto;
 
     .object{
         display: grid;
@@ -126,6 +129,10 @@
 
         .data-item{
             display: flex;
+        }
+
+        .desc {
+            text-align: center;
         }
     }
 
@@ -151,4 +158,9 @@
 
 .txt{
     color: white;
+}
+
+.ui.modal.list.front.transition.visible.active {
+    width: 80% !important;
+    height: 80% !important;
 }
