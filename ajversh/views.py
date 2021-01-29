@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
-from .models import Build, Item, Spell, Pasive
+from .models import Build, Item, Spell, Pasive, TankPasive
 import json
 from django.core import serializers
 from itertools import chain
@@ -47,14 +47,19 @@ def item_spells(request):
     item_id = body_data['pk']
     item_category = body_data['category']
 
-    if item_category != 'spell':
+    if item_category == 'pasive':
+        qs = Item.objects.get(id=item_id)
         spells = ValuesQuerySetToDict(Pasive.objects.filter(
             pasive__in=[item_id]).values('id', 'name', 'img', 'description'))
-        qs = Item.objects.get(id=item_id)
+        if (qs.set_part == 'Klata') and (qs.type_material == 'Płyta'):
+            spells.append({'tank_item': 'True'})
         if qs.set_part == 'Broń dwuręczna':
             spells.append({'lock_offhand': 'True'})
         else:
             spells.append({'lock_offhand': 'False'})
+    elif item_category == 'tankPasive':
+        spells = ValuesQuerySetToDict(TankPasive.objects.filter(
+            tank_pasive__in=[item_id]).values('id', 'name', 'img', 'description'))
 
     if item_type == 'head':
         if item_category == 'spell':
@@ -105,9 +110,11 @@ def save_view(request):
                 error_name = 'none'
                 if body_data['offhand']:
                     Build.objects.create(name_build=name_input, category=category_build, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
-                     boots_id=body_data['boots'], hand_id=body_data['weapon'], off_hand_id=body_data['offhand'], head_spell_id=body_data['head_spell'], chest_spell_id=body_data['chest_spell'],
-                     boots_spell_id=body_data['boots_spell'], weapon_spell_q_id=body_data['weapon_spell_q'], weapon_spell_w_id=body_data['weapon_spell_w'], weapon_spell_e_id=body_data['weapon_spell_e'],
-                     head_pasive_id=body_data['head_pasive'], chest_pasive_id=body_data['chest_pasive'], boots_pasive_id=body_data['boots_pasive'], weapon_pasive_id=body_data['weapon_pasive'])
+                                         boots_id=body_data['boots'], hand_id=body_data['weapon'], off_hand_id=body_data[
+                                             'offhand'], head_spell_id=body_data['head_spell'], chest_spell_id=body_data['chest_spell'],
+                                         boots_spell_id=body_data['boots_spell'], weapon_spell_q_id=body_data[
+                                             'weapon_spell_q'], weapon_spell_w_id=body_data['weapon_spell_w'], weapon_spell_e_id=body_data['weapon_spell_e'],
+                                         head_pasive_id=body_data['head_pasive'], chest_pasive_id=body_data['chest_pasive'], chest_pasive_tank_id=body_data['chest_pasive_tank'], boots_pasive_id=body_data['boots_pasive'], weapon_pasive_id=body_data['weapon_pasive'])
     except KeyError:
         if not name_input:
             error_name = 'Wpisz nazwę buildu!'
@@ -117,9 +124,11 @@ def save_view(request):
             else:
                 error_name = 'none'
                 Build.objects.create(name_build=name_input, category=category_build, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
-                 boots_id=body_data['boots'], hand_id=body_data['weapon'], head_spell_id=body_data['head_spell'], chest_spell_id=body_data['chest_spell'], boots_spell_id=body_data['boots_spell'],
-                 weapon_spell_q_id=body_data['weapon_spell_q'], weapon_spell_w_id=body_data['weapon_spell_w'], weapon_spell_e_id=body_data['weapon_spell_e'],
-                 head_pasive_id=body_data['head_pasive'], chest_pasive_id=body_data['chest_pasive'], boots_pasive_id=body_data['boots_pasive'], weapon_pasive_id=body_data['weapon_pasive'])
+                                     boots_id=body_data['boots'], hand_id=body_data['weapon'], head_spell_id=body_data[
+                                         'head_spell'], chest_spell_id=body_data['chest_spell'], boots_spell_id=body_data['boots_spell'],
+                                     weapon_spell_q_id=body_data['weapon_spell_q'], weapon_spell_w_id=body_data[
+                                         'weapon_spell_w'], weapon_spell_e_id=body_data['weapon_spell_e'],
+                                     head_pasive_id=body_data['head_pasive'], chest_pasive_id=body_data['chest_pasive'], chest_pasive_tank_id=body_data['chest_pasive_tank'], boots_pasive_id=body_data['boots_pasive'], weapon_pasive_id=body_data['weapon_pasive'])
     return JsonResponse(error_name, safe=False)
 
 

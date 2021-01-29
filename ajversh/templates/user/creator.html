@@ -255,6 +255,12 @@
             .then(result => {
                 var i;
                 var x;
+                if (result[result.length - 2].tank_item == 'True') {
+                    tank_item = 'True'
+                }
+                else {
+                    tank_item = 'False'
+                }
                 for (i = 0; i < result.length; i++) {
                     if (result[i].lock_offhand == 'True') {
                         lock_offhand = 'True'
@@ -263,23 +269,67 @@
                         lock_offhand = 'False'
                     }
                     else if (result[i].lock_offhand == undefined) {
-                        $(".description").append(
-                            '<div class="item-qs"><div class="object">' + result[i].name + '<div class="data-item"><img src="media/' + 
-                            result[i].img + '" title="' + result[i].name + '"><div class="select" onclick="nextPart(\'' + result[i].img + 
-                            '\',\'' + result[i].name + '\',\'' + type + '\',\'' + result[i].id +'\');">Wybierz</div></div><div class="desc">'+
-                        result[i].description +'</div></div></div>');
+                        if (tank_item == 'False') {
+                            $(".description").append(
+                                '<div class="item-qs"><div class="object">' + result[i].name + '<div class="data-item"><img src="media/' + 
+                                result[i].img + '" title="' + result[i].name + '"><div class="select" onclick="nextPart(\'' + result[i].img + 
+                                '\',\'' + result[i].name + '\',\'' + type + '\',\'' + result[i].id +'\');">Wybierz</div></div><div class="desc">'+
+                                result[i].description +'</div></div></div>');
+                        }
+                        else if (tank_item == 'True') {
+                            if (result[i].img != undefined) {
+                                $(".description").append(
+                                    '<div class="item-qs"><div class="object">' + result[i].name + '<div class="data-item"><img src="media/' + 
+                                    result[i].img + '" title="' + result[i].name + '"><div class="select" onclick="tankPasive(\'' + result[i].img + 
+                                    '\',\'' + result[i].name + '\',\'' + type + '\',\'' + pk + '\',\'' + result[i].id +'\');">Wybierz</div></div><div class="desc">'+
+                                    result[i].description +'</div></div></div>');
+                            }
+                        }   
                     }
                 }
             })
         }
     }
 
+
+    function tankPasive(img, name, type, pk, pasiveId) {
+        $(".plus").remove();
+        $(".imgs"+ type +"").append('<img class="spells" src="media/' + img + '" title="' + name + '">');
+        $(".imgs"+ type +"").append('<div class="add-item plus" style="padding:.55em .65em; top: 13px; position: relative;" onclick="re_openPopup()">+</div>');
+        $(".description").remove();
+        $(".modal-div-form").append('<div class="description item-list"></div>');
+
+        var url = "{% url 'ajversh:spells' %}"
+        fetch(url, {
+            method:'POST',
+            headers:{
+                'Content-type':'application/json',
+                'X-CSRFToken':csrftoken,
+            },
+            body:JSON.stringify({'pk': pk, 'type': type, 'category': 'tankPasive'})
+        })
+        .then(response => response.json())
+        .then(result => {
+            var i;
+            var x;
+            for (i = 0; i < result.length; i++) {
+                $(".description").append(
+                    '<div class="item-qs"><div class="object">' + result[i].name + '<div class="data-item"><img src="media/' + 
+                    result[i].img + '" title="' + result[i].name + '"><div class="select" onclick="nextPart(\'' + result[i].img + 
+                    '\',\'' + result[i].name + '\',\'' + type + '\',\'' + pasiveId + '\',\'' + result[i].id +'\');">Wybierz</div></div><div class="desc">'+
+                    result[i].description +'</div></div></div>');
+            }
+        })
+    }
+
+
     var head_pasive;
     var chest_pasive;
+    var chest_pasive_tank;
     var boots_pasive;
     var weapon_pasive;
 
-    function nextPart(img, name, type, pasiveId) {
+    function nextPart(img, name, type, pasiveId, pasiveTankId) {
         $(".plus").remove();
         $(".imgs"+ type +"").append('<img class="spells" src="media/' + img + '" title="' + name + '">');
         $('.ui.modal.list').modal('hide');
@@ -301,6 +351,9 @@
                 weapon_pasive = pasiveId
             }
         }
+        if (pasiveTankId != undefined) {
+            chest_pasive_tank = pasiveTankId
+        }
         if (lock_offhand == 'True') {
             weapon_pasive = pasiveId
             $(".parts").append('<div class="btn" onclick="saveBuild()">Zapisz</div>');
@@ -321,7 +374,7 @@
                 'X-CSRFToken':csrftoken,
             },
             body:JSON.stringify({'head':head, 'chest':chest, 'boots':boots, 'weapon':weapon, 'offhand':offhand, 'head_spell':head_spell, 'chest_spell':chest_spell, 'boots_spell':boots_spell,
-            'weapon_spell_q':weapon_spell_q, 'weapon_spell_w':weapon_spell_w, 'weapon_spell_e':weapon_spell_e, 'head_pasive':head_pasive, 'chest_pasive':chest_pasive, 'boots_pasive':boots_pasive,
+            'weapon_spell_q':weapon_spell_q, 'weapon_spell_w':weapon_spell_w, 'weapon_spell_e':weapon_spell_e, 'head_pasive':head_pasive, 'chest_pasive':chest_pasive, 'chest_pasive_tank':chest_pasive_tank, 'boots_pasive':boots_pasive,
             'weapon_pasive':weapon_pasive, 'category':category, 'role_set':role_set, 'inputVal':inputVal})
         })
         .then(response => response.json())
