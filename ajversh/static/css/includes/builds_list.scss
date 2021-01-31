@@ -35,12 +35,14 @@
         .link{
             margin-bottom: .4em;
             font-size: 1.1em;
+            cursor: pointer;
         }
     }
 }
 
 .description{
     display: flex;
+    flex-wrap: wrap;
 
     .left-imgs{
         background-image: url("/static/img/set.png");
@@ -48,8 +50,34 @@
         width: 500px;
         height: 520px;
     }
-}
 
-.ui.modal.info, .ui.modal>.header{
-    background-color: rgba(112, 112, 112, 0.836);
+    .right-data {
+        margin: auto;
+    }
+
+    .item {
+        color: white;
+        padding: .3em;
+        font-size: 1.1em;
+
+        .category, .item-info {
+            padding-bottom: .3em;
+        }
+
+        .item-build {
+            width: 60px;
+        }
+
+        .spell {
+            width: 48px;
+        }
+    }
+
+    .item:first-child {
+        margin-top: 1em;
+    }
+
+    .item:last-child {
+        margin-bottom: 1em;
+    }
 }

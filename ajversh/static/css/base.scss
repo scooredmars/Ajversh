@@ -37,3 +37,7 @@ a{
 .end{
     justify-content: flex-end;
 }
+
+.ui.modal.info, .ui.modal>.header, .ui.modal.list, .ui.modal>.header{
+    background-color: rgba(112, 112, 112, 0.836);
+}

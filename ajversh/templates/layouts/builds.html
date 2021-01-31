@@ -2,7 +2,7 @@
     <div class="ui accordion">
         <div class="title white">
             <i class="dropdown icon"></i>
-            {{ build }}
+            {{ build }} ({{ build.role_set }})
         </div>
         <div class="content">
             <div class="link" onclick="moreInfo('{{ build.id }}')">
@@ -12,8 +12,8 @@
             <img src="media/{{ build.chest.img }}" title="{{ build.chest }}">
             <img src="media/{{ build.boots.img }}" title="{{ build.boots }}">
             <img src="media/{{ build.hand.img }}" title="{{ build.hand }}">
-            {% if build.second_hand %}
-                <img src="media/{{ build.second_hand.img }}" title="{{ build.second_hand }}">
+            {% if build.off_hand %}
+                <img src="media/{{ build.off_hand.img }}" title="{{ build.off_hand }}">
             {% endif %}
         </div>
         <div class="border"></div>

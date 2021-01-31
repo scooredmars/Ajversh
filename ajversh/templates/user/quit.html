@@ -3,12 +3,12 @@
 <div class="ui basic modal">
     <div class="ui icon header">
         <i class="door open icon"></i>
-        Do you want to quit ?
+        Czy na pewno chcesz się wylogować ?
     </div>
     <div class="actions flex">
         <div class="ui red basic cancel inverted button">
             <i class="remove icon"></i>
-            No 
+            Nie
         </div>
         <form class="modal-form" method="post" action="{% url 'account_logout' %}">
             {% csrf_token %}
@@ -18,7 +18,7 @@
             <button type="submit" class="custom-logout">
                 <div class="ui green ok inverted button">
                     <i class="checkmark icon"></i>
-                    Yes
+                    Tak
                 </div>
             </button>
         </form>

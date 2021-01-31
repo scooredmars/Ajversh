@@ -1,62 +1,166 @@
 .create {
-    top: 5em;
+    top: 1.5em;
+    display: contents !important;
 
     .set {
         background-image: url("/static/img/set.png");
-        background-size: contain;
-        width: 100%;
-        min-height: 520px;
-        height: 100%;
         background-repeat: no-repeat;
-        background-position: center;
+        width: 500px;
+        height: 520px;
+    }
+
+    .error {
+        color: rgb(253, 29, 29);
+        font-size: 1.1em;
+    }
+
+    .parts {
+        margin-top: .3em;
     }
 
     .item-container {
-        width: 85%;
-        margin: auto;
-        padding-right: 7.5%;
+        display: grid;
+        font-size: 1.4em;
+        text-align: start;
+        padding-left: 1em;
+        margin-left: 1em;
+        padding-bottom: .5em;
+        background-color: rgb(41, 41, 41);
 
-        .item {
-            margin-top: 1.7em;
+        .add-item{
+            font-size: 1.2em;
+            padding: .7em .8em;
+            border: 1px solid grey;
+            color: rgb(139, 139, 139);
+            width: fit-content;
+            margin-top: .50em;
+            height: fit-content;
+        }
 
-            .object:nth-child(2) {
-                margin-right: 0.3em;
+        .add-item:hover{
+            cursor: pointer;
+            color: rgb(189, 189, 189);
+            border: 1px solid rgb(189, 189, 189);
+        }
+
+        img{
+            width: 65px;
+            margin-top: .50em;
+            margin-left: -6px;
+        }
+
+        .item-imgs{
+            display: flex;
+
+            .spells{
+                width: 50px;
+                height: 50px;
+                margin-left: .02em;
+                top: 13px;
+                position: relative;
             }
+        }
 
-            .text {
-                font-size: 1.3em;
+        #myInput {
+            background-color: gray;
+            color: white;
+        }
+        .selects, .name {
+            margin: .15em 0;
+            font-size: .9em;
+            .select-object {
+                margin: .5em 0;
+                #type {
+                    background-color: gray;
+                    color: white;
+                }
+                #role {
+                    background-color: gray;
+                    color: white;
+                }
             }
-
-            select,
-            input {
-                font-size: 1.2em;
-                padding: 0.1em;
-                background-color: rgba(255, 255, 255, 0.9);
+            .select-object:last-child {
+                margin-top: 1em;
             }
-
-            .select-build{
-                min-width: 240px;
-            }
+        }
+        .selects {
+            margin-bottom: -.5em;
         }
     }
 
-    .create-btn {
-        width: 70%;
-        padding: 0.4em;
-        color: white;
-        background-color: #2185d0;
-        font-size: 1.1em;
-        border-radius: 1em;
-        border: none;
+    .item-container:nth-child(1) {
+        padding-top: .3em;
     }
 
-    .create-btn:hover,
-    select:hover {
+    .item-container:nth-child(2) {
+        padding-top: .2em;
+    }
+
+    .btn {
+        width: 65%;
+        margin: auto;
+        margin-top: 1.1em;
+        background-color: rgb(0, 146, 0);
+        padding: .9em;
         cursor: pointer;
+        font-size: 1.3em;
+        border-radius: .5em;
+    }
+}
+
+.item-qs{
+    display: flex;
+    padding: 1em;
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.815);
+    transition: .3s;
+    max-width: 30%;
+    height: fit-content;
+    margin: 0 auto;
+
+    .object{
+        display: grid;
+        margin-right: .3em;
+
+        img{
+            width: 80px;
+            margin-top: .4em;
+        }
+
+        .data-item{
+            display: flex;
+        }
+
+        .desc {
+            text-align: center;
+        }
     }
 
-    .create-btn:focus,
-    select:focus {
-        outline: none;
+    .select{
+        top: 33%;
+        position: relative;
+        background-color: purple;
+        height: fit-content;
+        padding: .7em;
+        border-radius: .2em;
+        cursor: pointer;
+        margin-left: 1em;
     }
+}
+
+.item-qs:hover{
+    background-color: #292929bd;
+}
+
+.item-list{
+    padding: .5em;
+}
+
+.txt{
+    color: white;
+}
+
+.ui.modal.list.front.transition.visible.active {
+    width: 80% !important;
+    height: 80% !important;
 }

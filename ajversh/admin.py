@@ -1,8 +1,7 @@
 from django.contrib import admin
 
-from .models import Spell, Pasive, Tier, Item, Build
+from .models import Spell, Pasive, Item, Build, TankPasive
 
-admin.site.register(Tier)
 
 @admin.register(Spell)
 class SpellAdmin(admin.ModelAdmin):
@@ -22,13 +21,23 @@ class PasiveAdmin(admin.ModelAdmin):
     search_fields = ["name"]
 
 
+@admin.register(TankPasive)
+class TankPasiveAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "description",
+    )
+    search_fields = ["name"]
+
+
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "set_part",
+        "type_material",
     )
-    list_filter = ("set_part",)
+    list_filter = ("set_part", "type_material")
     search_fields = ["name"]
 
 
@@ -41,7 +50,7 @@ class BuildAdmin(admin.ModelAdmin):
         "chest",
         "boots",
         "hand",
-        "second_hand",
+        "off_hand",
     )
     list_filter = ("category",)
     search_fields = ["name_build"]
