@@ -194,29 +194,78 @@ def build_info(request):
     qs_build = Build.objects.get(id=build_id)
     build_filter = Build.objects.filter(id=build_id)
     name = qs_build.name_build
+    role = qs_build.role_set
     head = qs_build.head.name
     head_img = qs_build.head.img.url
+    head_spell = qs_build.head_spell.img.url
+    head_spell_name = qs_build.head_spell.name
+    head_pasive = qs_build.head_pasive.img.url
+    head_pasive_name = qs_build.head_pasive.name
 
     chest = qs_build.chest.name
     chest_img = qs_build.chest.img.url
+    chest_spell = qs_build.chest_spell.img.url
+    chest_spell_name = qs_build.chest_spell.name
+    chest_pasive = qs_build.chest_pasive.img.url
+    chest_pasive_name = qs_build.chest_pasive.name
 
     boots = qs_build.boots.name
     boots_img = qs_build.boots.img.url
+    boots_spell = qs_build.boots_spell.img.url
+    boots_spell_name = qs_build.boots_spell.name
+    boots_pasive = qs_build.boots_pasive.img.url
+    boots_pasive_name = qs_build.boots_pasive.name
 
     hand = qs_build.hand.name
     hand_img = qs_build.hand.img.url
+    hand_q = qs_build.weapon_spell_q.name
+    hand_q_img = qs_build.weapon_spell_q.img.url
+    hand_w = qs_build.weapon_spell_w.name
+    hand_w_img = qs_build.weapon_spell_w.img.url
+    hand_e = qs_build.weapon_spell_e.name
+    hand_e_img = qs_build.weapon_spell_e.img.url
+    hand_pasive = qs_build.weapon_pasive.name
+    hand_pasive_img = qs_build.weapon_pasive.img.url
+
 
     modal_data = {
         'name': name,
+        'role': role,
         'head': head,
         'head_img': head_img,
+        'head_spell': head_spell,
+        'head_spell_name': head_spell_name,
+        'head_pasive': head_pasive,
+        'head_pasive_name': head_pasive_name,
         'chest': chest,
         'chest_img': chest_img,
+        'chest_spell': chest_spell,
+        'chest_spell_name': chest_spell_name,
+        'chest_pasive': chest_pasive,
+        'chest_pasive_name': chest_pasive_name,
         'boots': boots,
         'boots_img': boots_img,
+        'boots_spell': boots_spell,
+        'boots_spell_name': boots_spell_name,
+        'boots_pasive': boots_pasive,
+        'boots_pasive_name': boots_pasive_name,
         'hand': hand,
         'hand_img': hand_img,
+        'hand_q': hand_q,
+        'hand_q_img': hand_q_img,
+        'hand_w': hand_w,
+        'hand_w_img': hand_w_img,
+        'hand_e': hand_e,
+        'hand_e_img': hand_e_img,
+        'hand_pasive': hand_pasive,
+        'hand_pasive_img': hand_pasive_img,
     }
+
+    if build_filter[0].chest_pasive_tank:
+        chest_pasive_tank = qs_build.chest_pasive_tank.img.url
+        chest_pasive_tank_name = qs_build.chest_pasive_tank.name
+        modal_data['chest_pasive_tank'] = chest_pasive_tank
+        modal_data['chest_pasive_tank_name'] = chest_pasive_tank_name
 
     for item in build_filter:
         if item.off_hand:

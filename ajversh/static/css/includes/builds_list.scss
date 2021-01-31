@@ -50,4 +50,34 @@
         width: 500px;
         height: 520px;
     }
+
+    .right-data {
+        margin: auto;
+    }
+
+    .item {
+        color: white;
+        padding: .3em;
+        font-size: 1.1em;
+
+        .category, .item-info {
+            padding-bottom: .3em;
+        }
+
+        .item-build {
+            width: 60px;
+        }
+
+        .spell {
+            width: 48px;
+        }
+    }
+
+    .item:first-child {
+        margin-top: 1em;
+    }
+
+    .item:last-child {
+        margin-bottom: 1em;
+    }
 }
