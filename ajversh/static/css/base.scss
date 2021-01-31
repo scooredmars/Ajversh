@@ -1,3 +1,4 @@
+@import "mobile";
 @import "includes/home";
 @import "includes/navbar";
 @import "includes/footer";
@@ -40,4 +41,11 @@ a{
 
 .ui.modal.info, .ui.modal>.header, .ui.modal.list, .ui.modal>.header{
     background-color: rgba(112, 112, 112, 0.836);
+}
+
+.in-build {
+    top: 45%;
+    position: absolute;
+    left: 30%;
+    font-size: 1.5em;
 }
