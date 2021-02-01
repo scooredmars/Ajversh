@@ -4,12 +4,6 @@
     }
 }
 
-@media (max-width: 600px) {
-    .home-container {
-        width: 100% !important;
-    }
-}
-
 @media (max-width: 900px) {
     .phone {
         display: block !important;
@@ -39,4 +33,32 @@
     .ui.dropdown .menu, .ui.menu .dropdown.item .menu {
         background: rgb(197, 197, 197) !important;
     }
+
+    .left-imgs {
+        display: none;
+    }
+
+    .right-data {
+        width: 80%;
+
+        .item {
+            max-width: 60%;
+            margin: auto;
+        }
+    }
 }
+
+@media (max-width: 600px) {
+    .home-container {
+        width: 100% !important;
+    }
+
+    .right-data {
+        width: 100%;
+
+        .item {
+            max-width: 80%;
+        }
+    }
+}
+
