@@ -1,0 +1,42 @@
+@media (max-width: 1080px) {
+    .home-container {
+        width: 75% !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-container {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .phone {
+        display: block !important;
+
+        .item-bars {
+            float: right;
+            font-size: 2em;
+            margin-right: .25em;
+            padding: .6em;
+        }
+    }
+
+    .ui.menu {
+        display: none;
+    }
+
+    .ui.right.icon.sidebar.inverted.vertical.menu {
+        .item {
+            font-size: 1.2em;
+
+            i {
+                padding-bottom: 1.4em;
+            }
+        }
+    }
+
+    .ui.dropdown .menu, .ui.menu .dropdown.item .menu {
+        background: rgb(197, 197, 197) !important;
+    }
+}

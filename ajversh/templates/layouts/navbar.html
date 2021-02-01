@@ -1,70 +1,114 @@
 {% load static %}
 
-<div class="ui secondary pointing menu">
+<div class="ui secondary pointing menu ">
     <a href="/" class="item">
-        Home
+        <i class="home icon"></i>Home
     </a>
     {% if user.is_authenticated %}
-        <div class="ui item inline dropdown">
-            <div>
-                Lista setów
+            <div class="ui item inline dropdown">
+                <div>
+                    <i class="list ul icon"></i>Lista setów
+                </div>
+                <div class="menu">
+                    <a href="{% url 'ajversh:solo' %}" class="item">
+                        Solo Dungi
+                    </a>
+                    <a href="{% url 'ajversh:group' %}" class="item">
+                        Grupowe Dungi
+                    </a>
+                    <a href="{% url 'ajversh:pvp' %}" class="item">
+                        PVP
+                    </a>
+                    <a href="{% url 'ajversh:zvz' %}" class="item">
+                        ZVZ
+                    </a>
+                    <a href="{% url 'ajversh:avalon' %}" class="item">
+                        Avalon
+                    </a>
+                </div>
             </div>
-            <div class="menu">
-                <a href="{% url 'ajversh:solo' %}" class="item">
-                    Solo Dungi
-                </a>
-                <a href="{% url 'ajversh:group' %}" class="item">
-                    Grupowe Dungi
-                </a>
-                <a href="{% url 'ajversh:pvp' %}" class="item">
-                    PVP
-                </a>
-                <a href="{% url 'ajversh:zvz' %}" class="item">
-                    ZVZ
-                </a>
-                <a href="{% url 'ajversh:avalon' %}" class="item">
-                    Avalon
-                </a>
-            </div>
-        </div>
-        <a href="{% url 'ajversh:guild' %}" class="item">
-            Gildia
-        </a>
-        <a href="{% url 'ajversh:creator' %}" class="item">
-            Kreator setow
-        </a>
+            <a href="{% url 'ajversh:creator' %}" class="item">
+                <i class="plus icon"></i>Kreator setow
+            </a>
     {% endif %}
     <div class="right menu">
-        {% if user.is_authenticated %}
-            <div class="ui item inline dropdown">
-                <div class="text">
-                    {{ user }}
-                </div>
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    <a href="{% url 'ajversh:account' %}" class="item">
-                        Moje konto
-                    </a>
-                    <a href="{% url 'ajversh:edit' %}" class="item">
-                        Edytuj profil
-                    </a>
-                    <a href="{% url 'ajversh:messages' %}" class="item">
-                        Wiadomości
-                    </a>
-                    <a class="item quit">Wyloguj</a>
-                    {% include "user/quit.html" %}
-                </div>
-            </div>
-        {% else %}
-            <a href="{% url 'account_login' %}">
-                <div class="ui item">
-                    <div class="login white">
-                        Zaloguj
+            {% if user.is_authenticated %}
+                <div class="ui item inline dropdown">
+                    <div class="text">
+                        {{ user }}
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="{% url 'ajversh:account' %}" class="item">
+                            <i class="user icon"></i>Moje konto
+                        </a>
+                        <a href="{% url 'ajversh:edit' %}" class="item">
+                            <i class="edit icon"></i>Edytuj profil
+                        </a>
+                        <a href="{% url 'ajversh:messages' %}" class="item">
+                            <i class="envelope icon"></i>Wiadomości
+                        </a>
+                        <a class="item quit">
+                            <i class="sign out alternate icon"></i>Wyloguj
+                        </a>
+                        {% include "user/quit.html" %}
                     </div>
                 </div>
-            </a>
-        {% endif %}
+            {% else %}
+                <a href="{% url 'account_login' %}">
+                    <div class="ui item">
+                        <div class="login white">
+                            Zaloguj
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
     </div>
 </div>
+
+<div class="pointing menu phone">
+    <div class="item-bars">
+        <i class="bars icon"></i>
+    </div>
+</div>
+
+<div class="ui right icon sidebar inverted vertical menu">
+    <a href="/" class="item">
+        <i class="home icon"></i>Home
+    </a>
+    <div class="ui  dropdown item">
+        <i class="list ul icon"></i>
+        Lista setów
+        <div class="menu">
+            <a href="{% url 'ajversh:solo' %}" class="item">
+                Solo Dungi
+            </a>
+            <a href="{% url 'ajversh:group' %}" class="item">
+                Grupowe Dungi
+            </a>
+            <a href="{% url 'ajversh:pvp' %}" class="item">
+                PVP
+            </a>
+            <a href="{% url 'ajversh:zvz' %}" class="item">
+                ZVZ
+            </a>
+            <a href="{% url 'ajversh:avalon' %}" class="item">
+                Avalon
+            </a>
+        </div>
+    </div>
+    <a href="{% url 'ajversh:creator' %}" class="item">
+        <i class="plus icon"></i>Kreator setów
+    </a>
+    <a class="item quit">
+        <i class="sign out alternate icon"></i>Wyloguj
+    </a>
+</div>
+
+
+<script>
+    $('.ui.sidebar')
+        .sidebar('attach events', '.item-bars', 'show')
+</script>
 
 <script src="{% static "js/modal.js" %}"></script>
