@@ -2,6 +2,14 @@
     .home-container {
         width: 75% !important;
     }
+
+    .preview {
+        display: none !important;
+    }
+
+    .parts {
+        width: 60% !important;
+    }
 }
 
 @media (max-width: 900px) {
@@ -14,6 +22,10 @@
             margin-right: .25em;
             padding: .6em;
         }
+    }
+
+    .parts {
+        width: 80% !important;
     }
 
     .ui.menu {
@@ -46,6 +58,10 @@
             margin: auto;
         }
     }
+
+    .middle.aligned.row {
+        margin-right: -3.5em;
+    }
 }
 
 @media (max-width: 600px) {
@@ -59,6 +75,14 @@
         .item {
             max-width: 80%;
         }
+    }
+
+    .remove-btn {
+        margin-right: -.9em;
+    }
+
+    .middle.aligned.row {
+        margin-right: -3.5em !important;
     }
 }
 

@@ -26,7 +26,7 @@ function moreInfo(buildId){
     .then(function(data) {
         $(".txt").remove();
         $(".left-imgs").remove();
-        $(".header").append('<div class="txt">' + data.name + ' (' + data.role +')</div>');
+        $(".header").append('<div class="txt">' + data.name + ' (' + data.role +')<div class="actions remove-btn"><i class="cancel remove-btn icon"></i></div></div>');
         $(".description").prepend('<div class="left-imgs"></div>');
         $(".left-imgs").append('<img src="' + data.head_img + '" title="' + data.head + '" width="100px" style="position: absolute; top: 116px; left: 190px;">');
         $(".left-imgs").append('<img src="' + data.chest_img + '" title="' + data.chest + '" width="100px" style="position: absolute; top: 227px; left: 190px;">');

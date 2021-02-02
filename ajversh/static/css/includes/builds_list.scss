@@ -1,38 +1,39 @@
-.builds{
+.builds {
     width: 100%;
     display: flex;
 
-    .left, .right{
+    .left,
+    .right {
         width: 50%;
     }
 
-    .item{
+    .item {
         text-align: center;
         margin-top: 2.5em;
 
-        .title{
+        .title {
             font-size: 1.2em !important;
         }
 
-        img{
+        img {
             width: 50px;
         }
 
-        .border{
+        .border {
             width: 60%;
             border-bottom: 1px solid rgba(88, 88, 88, 0.521);
             margin: auto;
             padding-top: .4em;
         }
 
-        a{
+        a {
             display: block;
             font-size: 1.1em;
             margin-bottom: .7em;
             padding-top: .3em;
         }
 
-        .link{
+        .link {
             margin-bottom: .4em;
             font-size: 1.1em;
             cursor: pointer;
@@ -40,11 +41,11 @@
     }
 }
 
-.description{
+.description {
     display: flex;
     flex-wrap: wrap;
 
-    .left-imgs{
+    .left-imgs {
         background-image: url("/static/img/set.png");
         background-repeat: no-repeat;
         width: 500px;
@@ -60,7 +61,8 @@
         padding: .3em;
         font-size: 1.1em;
 
-        .category, .item-info {
+        .category,
+        .item-info {
             padding-bottom: .3em;
         }
 
@@ -80,4 +82,10 @@
     .item:last-child {
         margin-bottom: 1em;
     }
+}
+
+.remove-btn {
+    float: right;
+    font-size: 1.3em !important;
+    cursor: pointer;
 }
