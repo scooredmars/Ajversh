@@ -27,6 +27,9 @@
                     </a>
                 </div>
             </div>
+            <a href="{% url 'ajversh:guild' %}" class="item in-progress">
+                <i class="users icon"></i>Gildia
+            </a>
             <a href="{% url 'ajversh:creator' %}" class="item">
                 <i class="plus icon"></i>Kreator setow
             </a>
@@ -39,13 +42,10 @@
                     </div>
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a href="{% url 'ajversh:account' %}" class="item">
+                        <a href="{% url 'ajversh:account' %}" class="item in-progress">
                             <i class="user icon"></i>Moje konto
                         </a>
-                        <a href="{% url 'ajversh:edit' %}" class="item">
-                            <i class="edit icon"></i>Edytuj profil
-                        </a>
-                        <a href="{% url 'ajversh:messages' %}" class="item">
+                        <a href="{% url 'ajversh:messages' %}" class="item in-progress">
                             <i class="envelope icon"></i>Wiadomości
                         </a>
                         <a class="item quit">

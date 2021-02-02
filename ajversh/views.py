@@ -140,10 +140,6 @@ def profile_view(request):
     return render(request, "user/profile.html")
 
 
-def edit_view(request):
-    return render(request, "user/edit-profile.html")
-
-
 def messages_view(request):
     return render(request, "user/messages.html")
 
