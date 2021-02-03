@@ -16,6 +16,5 @@ urlpatterns = [
     path("save", views.save_view, name="save"),
     path("dc-settings", views.dc_settings_view, name="dc-settings"),
     path("account", views.profile_view, name="account"),
-    path("edit", views.edit_view, name="edit"),
     path("messages", views.messages_view, name="messages"),
 ]

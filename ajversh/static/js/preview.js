@@ -26,14 +26,14 @@ function moreInfo(buildId){
     .then(function(data) {
         $(".txt").remove();
         $(".left-imgs").remove();
-        $(".header").append('<div class="txt">' + data.name + ' (' + data.role +')</div>');
+        $(".header").append('<div class="txt">' + data.name + ' (' + data.role +')<div class="actions remove-btn"><i class="cancel remove-btn icon"></i></div></div>');
         $(".description").prepend('<div class="left-imgs"></div>');
-        $(".left-imgs").append('<img src="' + data.head_img + '" title="' + data.head + '" width="100px" style="position: absolute; top: 116px; left: 190px;">');
-        $(".left-imgs").append('<img src="' + data.chest_img + '" title="' + data.chest + '" width="100px" style="position: absolute; top: 227px; left: 190px;">');
-        $(".left-imgs").append('<img src="' + data.boots_img + '" title="' + data.boots + '" width="100px" style="position: absolute; top: 339px; left: 190px;">');
-        $(".left-imgs").append('<img src="' + data.hand_img + '" title="' + data.hand + '" width="100px" style="position: absolute; top: 227px; left: 62px;">');
+        $(".left-imgs").append('<img src="' + data.head_img + '" title="' + data.head + '" width="100px" style="position: absolute; top: 53px; left: 190px;">');
+        $(".left-imgs").append('<img src="' + data.chest_img + '" title="' + data.chest + '" width="100px" style="position: absolute; top: 167px; left: 190px;">');
+        $(".left-imgs").append('<img src="' + data.boots_img + '" title="' + data.boots + '" width="100px" style="position: absolute; top: 281px; left: 190px;">');
+        $(".left-imgs").append('<img src="' + data.hand_img + '" title="' + data.hand + '" width="100px" style="position: absolute; top: 167px; left: 62px;">');
         if (data.off_hand_img != undefined ) {
-            $(".left-imgs").append('<img src="' + data.off_hand_img + '" title="' + data.off_hand + '" width="100px" style="position: absolute; top: 227px; left: 320px;">');
+            $(".left-imgs").append('<img src="' + data.off_hand_img + '" title="' + data.off_hand + '" width="100px" style="position: absolute; top: 167px; left: 320px;">');
         }
 
         $(".preview-head").remove();
