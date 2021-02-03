@@ -109,6 +109,13 @@
     }
 }
 
+.modal-div-form {
+    max-height: calc(91vh - 10rem);
+    overflow: auto;
+    right: -2em;
+    position: relative;
+}
+
 .item-qs{
     display: flex;
     padding: 1em;

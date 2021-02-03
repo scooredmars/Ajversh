@@ -64,6 +64,12 @@
     }
 }
 
+@media (max-width: 800px) {
+    .item-qs {
+        max-width: none !important;
+    }
+}
+
 @media (max-width: 600px) {
     .home-container {
         width: 100% !important;
