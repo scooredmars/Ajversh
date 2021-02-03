@@ -5,34 +5,43 @@
         <i class="home icon"></i>Home
     </a>
     {% if user.is_authenticated %}
-            <div class="ui item inline dropdown">
-                <div>
-                    <i class="list ul icon"></i>Lista setów
-                </div>
-                <div class="menu">
-                    <a href="{% url 'ajversh:solo' %}" class="item">
-                        Solo Dungi
-                    </a>
-                    <a href="{% url 'ajversh:group' %}" class="item">
-                        Grupowe Dungi
-                    </a>
-                    <a href="{% url 'ajversh:pvp' %}" class="item">
-                        PVP
-                    </a>
-                    <a href="{% url 'ajversh:zvz' %}" class="item">
-                        ZVZ
-                    </a>
-                    <a href="{% url 'ajversh:avalon' %}" class="item">
-                        Avalon
-                    </a>
-                </div>
+        <div class="ui item inline dropdown">
+            <div>
+                <i class="list ul icon"></i>Lista setów
             </div>
-            <a href="{% url 'ajversh:guild' %}" class="item in-progress">
-                <i class="users icon"></i>Gildia
-            </a>
+            <div class="menu">
+                <a href="{% url 'ajversh:solo' %}" class="item">
+                    Solo Dungi
+                </a>
+                <a href="{% url 'ajversh:group' %}" class="item">
+                    Grupowe Dungi
+                </a>
+                <a href="{% url 'ajversh:pvp' %}" class="item">
+                    PVP
+                </a>
+                <a href="{% url 'ajversh:zvz' %}" class="item">
+                    ZVZ
+                </a>
+                <a href="{% url 'ajversh:avalon' %}" class="item">
+                    Avalon
+                </a>
+            </div>
+        </div>
+        <a href="{% url 'ajversh:guild' %}" class="item in-progress">
+            <i class="users icon"></i>Gildia
+        </a>
+        {% for a in user.groups.all %}
+            {% if a.name == 'Kreator' %}
+                <a href="{% url 'ajversh:creator' %}" class="item">
+                    <i class="plus icon"></i>Kreator setow
+                </a>
+            {% endif %}
+        {% endfor %}
+        {% if user.is_superuser %}
             <a href="{% url 'ajversh:creator' %}" class="item">
                 <i class="plus icon"></i>Kreator setow
             </a>
+        {% endif %}
     {% endif %}
     <div class="right menu">
             {% if user.is_authenticated %}
