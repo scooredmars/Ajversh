@@ -100,35 +100,44 @@ def save_view(request):
         if single_obj in list(name_qs):
             name_exist = True
 
-    try:
-        if not name_input:
-            error_name = 'Wpisz nazwę buildu!'
-        else:
-            if name_exist:
-                error_name = 'Ta nazwa już istnieje!'
-            else:
-                error_name = 'none'
-                if body_data['offhand']:
-                    Build.objects.create(name_build=name_input, category=category_build, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
-                                         boots_id=body_data['boots'], hand_id=body_data['weapon'], off_hand_id=body_data[
-                                             'offhand'], head_spell_id=body_data['head_spell'], chest_spell_id=body_data['chest_spell'],
-                                         boots_spell_id=body_data['boots_spell'], weapon_spell_q_id=body_data[
-                                             'weapon_spell_q'], weapon_spell_w_id=body_data['weapon_spell_w'], weapon_spell_e_id=body_data['weapon_spell_e'],
-                                         head_pasive_id=body_data['head_pasive'], chest_pasive_id=body_data['chest_pasive'], chest_pasive_tank_id=body_data['chest_pasive_tank'], boots_pasive_id=body_data['boots_pasive'], weapon_pasive_id=body_data['weapon_pasive'])
-    except KeyError:
-        if not name_input:
-            error_name = 'Wpisz nazwę buildu!'
-        else:
-            if name_exist:
-                error_name = 'Ta nazwa już istnieje!'
-            else:
-                error_name = 'none'
+    if name_input == '':
+        error_name = 'Wpisz nazwę buildu!'
+    elif name_exist:
+        error_name = 'Ta nazwa już istnieje!'
+    else:
+        error_name = 'none'
+        if 'offhand' in body_data:
+            if 'chest_pasive_tank' in body_data:
                 Build.objects.create(name_build=name_input, category=category_build, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
-                                     boots_id=body_data['boots'], hand_id=body_data['weapon'], head_spell_id=body_data[
-                                         'head_spell'], chest_spell_id=body_data['chest_spell'], boots_spell_id=body_data['boots_spell'],
-                                     weapon_spell_q_id=body_data['weapon_spell_q'], weapon_spell_w_id=body_data[
-                                         'weapon_spell_w'], weapon_spell_e_id=body_data['weapon_spell_e'],
-                                     head_pasive_id=body_data['head_pasive'], chest_pasive_id=body_data['chest_pasive'], chest_pasive_tank_id=body_data['chest_pasive_tank'], boots_pasive_id=body_data['boots_pasive'], weapon_pasive_id=body_data['weapon_pasive'])
+                                    boots_id=body_data['boots'], hand_id=body_data['weapon'], off_hand_id=body_data[
+                                        'offhand'], head_spell_id=body_data['head_spell'], chest_spell_id=body_data['chest_spell'],
+                                    boots_spell_id=body_data['boots_spell'], weapon_spell_q_id=body_data[
+                                        'weapon_spell_q'], weapon_spell_w_id=body_data['weapon_spell_w'], weapon_spell_e_id=body_data['weapon_spell_e'],
+                                    head_pasive_id=body_data['head_pasive'], chest_pasive_id=body_data['chest_pasive'], chest_pasive_tank_id=body_data['chest_pasive_tank'],
+                                    boots_pasive_id=body_data['boots_pasive'], weapon_pasive_id=body_data['weapon_pasive'])
+            else:
+                Build.objects.create(name_build=name_input, category=category_build, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
+                                    boots_id=body_data['boots'], hand_id=body_data['weapon'], off_hand_id=body_data[
+                                        'offhand'], head_spell_id=body_data['head_spell'], chest_spell_id=body_data['chest_spell'],
+                                    boots_spell_id=body_data['boots_spell'], weapon_spell_q_id=body_data[
+                                        'weapon_spell_q'], weapon_spell_w_id=body_data['weapon_spell_w'], weapon_spell_e_id=body_data['weapon_spell_e'],
+                                    head_pasive_id=body_data['head_pasive'], chest_pasive_id=body_data['chest_pasive'],
+                                    boots_pasive_id=body_data['boots_pasive'], weapon_pasive_id=body_data['weapon_pasive'])
+        else:
+            if 'chest_pasive_tank' in body_data:
+                Build.objects.create(name_build=name_input, category=category_build, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
+                                    boots_id=body_data['boots'], hand_id=body_data['weapon'],  head_spell_id=body_data['head_spell'], chest_spell_id=body_data['chest_spell'],
+                                    boots_spell_id=body_data['boots_spell'], weapon_spell_q_id=body_data[
+                                        'weapon_spell_q'], weapon_spell_w_id=body_data['weapon_spell_w'], weapon_spell_e_id=body_data['weapon_spell_e'],
+                                    head_pasive_id=body_data['head_pasive'], chest_pasive_id=body_data['chest_pasive'], chest_pasive_tank_id=body_data['chest_pasive_tank'],
+                                    boots_pasive_id=body_data['boots_pasive'], weapon_pasive_id=body_data['weapon_pasive'])
+            else:
+                Build.objects.create(name_build=name_input, category=category_build, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
+                                    boots_id=body_data['boots'], hand_id=body_data['weapon'], head_spell_id=body_data['head_spell'], chest_spell_id=body_data['chest_spell'],
+                                    boots_spell_id=body_data['boots_spell'], weapon_spell_q_id=body_data[
+                                        'weapon_spell_q'], weapon_spell_w_id=body_data['weapon_spell_w'], weapon_spell_e_id=body_data['weapon_spell_e'],
+                                    head_pasive_id=body_data['head_pasive'], chest_pasive_id=body_data['chest_pasive'],
+                                    boots_pasive_id=body_data['boots_pasive'], weapon_pasive_id=body_data['weapon_pasive'])
     return JsonResponse(error_name, safe=False)
 
 

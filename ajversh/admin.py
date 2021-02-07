@@ -51,6 +51,7 @@ class BuildAdmin(admin.ModelAdmin):
         "boots",
         "hand",
         "off_hand",
+        "role_set",
     )
     list_filter = ("category",)
     search_fields = ["name_build"]
