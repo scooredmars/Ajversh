@@ -66,6 +66,10 @@
     .middle.aligned.row {
         margin-right: -3.5em;
     }
+
+    .footer {
+        padding-bottom: 1.5em;
+    }
 }
 
 @media (max-width: 800px) {
@@ -94,18 +98,36 @@
     .middle.aligned.row {
         margin-right: -3.5em !important;
     }
+
+    .middle.aligned.row.login {
+        margin-left: -1.5em !important;
+    }
+
+    .pointing.menu.phone {
+        padding-bottom: 3.65em;
+    }
+
+    .item-container {
+        padding-left: 1.5em;
+    }
+}
+
+@media (max-width: 450px) {
+    .middle.aligned.row.creator {
+        width: auto !important;
+    }
 }
 
 @media (max-width: 360px) {
-    .middle.aligned.row {
-        margin-right: 2.2em !important;
-    
+    .middle.aligned.row.login {
+        margin-left: -5em !important;
+
         .ui.icon.header.white {
             margin-left: 2.5em;
         }
     }
 
-    .pointing.menu.phone {
-        padding-bottom: 3.65em;
+    .item-container {
+        padding-right: 1.2em;
     }
 }
