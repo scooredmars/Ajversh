@@ -96,3 +96,16 @@
     }
 }
 
+@media (max-width: 360px) {
+    .middle.aligned.row {
+        margin-right: 2.2em !important;
+    
+        .ui.icon.header.white {
+            margin-left: 2.5em;
+        }
+    }
+
+    .pointing.menu.phone {
+        padding-bottom: 3.65em;
+    }
+}
