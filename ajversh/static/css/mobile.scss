@@ -70,6 +70,11 @@
     .footer {
         padding-bottom: 1.5em;
     }
+
+    .introduction{
+        font-size: 1.2em !important;
+        padding-top: 7% !important;
+    }
 }
 
 @media (max-width: 800px) {
@@ -129,5 +134,20 @@
 
     .item-container {
         padding-right: 1.2em;
+    }
+}
+
+@media screen and (max-width: 770px), screen and (max-height: 650px) {
+    .footer {
+        position: relative !important;
+        margin-top: 2em;
+    }
+
+    .pointing.menu.phone {
+        padding-bottom: 3.65em;
+    }
+
+    .introduction {
+        text-align: center !important;
     }
 }
