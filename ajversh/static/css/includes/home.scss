@@ -10,13 +10,25 @@ body {
     position: relative;
 
     .introduction {
-        font-size: 1.5em;
-        text-align: center;
-        color: white;
-        padding-top: 25%;
+        font-size: 1.35em;
+        text-align: justify;
+        color: rgba(255, 255, 255, 0.801);
+        padding-top: 13%;
+        width: 63%;
+        margin: auto;
+
+        .dc-button {
+            background-color: rgb(3, 180, 3);
+            margin: auto;
+            margin-top: 2em;
+            width: fit-content;
+            padding: .6em .7em;
+            font-size: 1.1em;
+            border-radius: 1em;
+        }
 
         .dc-link:hover {
-            text-decoration: underline;
+            text-decoration: none;
         }
     }
 }
