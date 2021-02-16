@@ -6,6 +6,10 @@
 @import "includes/creator";
 @import "includes/builds_list";
 
+.default-content {
+    min-height: 71.8vh;
+}
+
 a{
     color: white !important;
 }
