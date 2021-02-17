@@ -151,3 +151,13 @@
         text-align: center !important;
     }
 }
+
+@media screen and (max-height: 650px) {
+    .introduction{
+        padding-top: 4% !important;
+    }
+
+    .ui.two.column.stackable.center.aligned.grid {
+        padding-bottom: 0em !important;
+    }
+}
