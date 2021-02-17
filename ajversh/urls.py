@@ -4,11 +4,7 @@ from . import views
 
 urlpatterns = [
     path("", views.home_view, name="index"),
-    path("solo", views.solo_view, name="solo"),
-    path("group", views.group_view, name="group"),
-    path("pvp", views.pvp_view, name="pvp"),
-    path("zvz", views.zvz_view, name="zvz"),
-    path("avalon", views.avalon_view, name="avalon"),
+    path("sets/", views.sets_view, name="sets"),
     path("build-info", views.build_info, name="build-info"),
     path("guild", views.guild_view, name="guild"),
     path("creator", views.sets_creator_view, name="creator"),

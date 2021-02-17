@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from .models import Spell, Pasive, Item, Build, TankPasive
+from .models import Spell, Pasive, Item, Build, TankPasive, CategoryBuild
+
+admin.site.register(CategoryBuild)
 
 
 @admin.register(Spell)

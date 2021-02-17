@@ -8,10 +8,10 @@
             <div class="link" onclick="moreInfo('{{ build.id }}')">
                 Pokaż więcej!
             </div>
-            <img src="media/{{ build.head.img }}" title="{{ build.head }}">
-            <img src="media/{{ build.chest.img }}" title="{{ build.chest }}">
-            <img src="media/{{ build.boots.img }}" title="{{ build.boots }}">
-            <img src="media/{{ build.hand.img }}" title="{{ build.hand }}">
+            <img src="{{ build.head.img.url }}" title="{{ build.head }}">
+            <img src="{{ build.chest.img.url }}" title="{{ build.chest }}">
+            <img src="{{ build.boots.img.url }}" title="{{ build.boots }}">
+            <img src="{{ build.hand.img.url }}" title="{{ build.hand }}">
             {% if build.off_hand %}
                 <img src="media/{{ build.off_hand.img }}" title="{{ build.off_hand }}">
             {% endif %}
