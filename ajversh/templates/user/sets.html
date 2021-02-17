@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}ZVZ{% endblock %}
+{% block title %}{{ category_name }}{% endblock %}
 
 {% block content %}
     {% if user.is_authenticated %}
@@ -19,29 +19,25 @@
                 </div>
             </div>
             <div class="left">
-            {% for build in zvz_builds %}
-                {% if build.id|divisibleby:"2" %}
-                    {% include "layouts/builds.html" %}
-                {% endif %}
-            {% endfor %}
+                {% for build in builds_list %}
+                    {% if build.id|divisibleby:"2" %}
+                        {% include "layouts/builds.html" %}
+                    {% endif %}
+                {% endfor %}
             </div>
             <div class="right">
-            {% for build in zvz_builds %}
-                {% if build.id|divisibleby:"2" %}
-                {% else %}
-                    {% include "layouts/builds.html" %}
-                {% endif %}
-            {% endfor %}
+                {% for build in builds_list %}
+                    {% if not build.id|divisibleby:"2" %}
+                        {% include "layouts/builds.html" %}
+                    {% endif %}
+                {% endfor %}
             </div>
             <script src="{% static "js/modal.js" %}"></script>
             <script>
                 var url = "{% url 'ajversh:build-info' %}";
             </script>
             <script src="{% static "js/preview.js" %}"></script>
-
         </div>
-    {% else %}
-        Nie dla psa kiełbasa(EasterEgg)
     {% endif %}
 {% endblock %}
 

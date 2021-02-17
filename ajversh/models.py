@@ -66,13 +66,6 @@ class CategoryBuild(models.Model):
 
 
 class Build(models.Model):
-    NAME = (
-        ('Grupowe Dungi', 'Grupowe Dungi'),
-        ('Solo Dungi', 'Solo Dungi'),
-        ('PVP', 'PVP'),
-        ('ZVZ', 'ZVZ'),
-        ('AVALON', 'AVALON'),
-    )
     ROLE = (
         ('Tank', 'Tank'),
         ('Heal', 'Heal'),
