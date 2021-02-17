@@ -4,6 +4,14 @@ from . import settings
 from django.contrib import admin
 from django.urls import include, path
 
+handler400 = "ajversh.views.error_400"
+
+handler403 = "ajversh.views.error_403"
+
+handler404 = "ajversh.views.error_404"
+
+handler500 = "ajversh.views.error_500"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include(("ajversh.urls", "ajversh"))),
