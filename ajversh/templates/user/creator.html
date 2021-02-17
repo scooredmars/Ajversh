@@ -34,11 +34,9 @@
                         <div class="select-object">
                             <label for="type">Kategoria: </label>
                             <select name="type" id="type">
-                                <option value="Solo Dungi">Solo Dungi</option>
-                                <option value="Grupowe Dungi">Grupowe Dungi</option>
-                                <option value="PVP">PVP</option>
-                                <option value="ZVZ">ZVZ</option>
-                                <option value="AVALON">AVALON</option>
+                                {% for category in category_list %}
+                                    <option value="{{category.id}}">{{category}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="select-object">

@@ -58,6 +58,12 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
+class CategoryBuild(models.Model):
+    name = models.CharField(max_length=50, null=True)
+
+    def __str__(self):
+        return self.name
+
 
 class Build(models.Model):
     NAME = (
@@ -75,7 +81,7 @@ class Build(models.Model):
         ('Supp', 'Supp'),
     )
     name_build = models.CharField(max_length=50)
-    category = models.CharField(max_length=50, choices=NAME, null=True)
+    category = models.ForeignKey("ajversh.CategoryBuild", on_delete=models.CASCADE)
     role_set = models.CharField(max_length=20, choices=ROLE, null=True)
     head = models.ForeignKey(
         'ajversh.Item', on_delete=models.CASCADE, related_name='head_item', null=True)

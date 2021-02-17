@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
-from .models import Build, Item, Spell, Pasive, TankPasive
+from .models import Build, Item, Spell, Pasive, TankPasive, CategoryBuild
 import json
 from django.core import serializers
 from itertools import chain
@@ -19,6 +19,7 @@ def ValuesQuerySetToDict(vqs):
 
 
 def sets_creator_view(request):
+    category_list = CategoryBuild.objects.all()
     if request.body:
         body_data = json.loads(request.body)
         item_id = body_data['type']
@@ -38,7 +39,10 @@ def sets_creator_view(request):
             items_json = ValuesQuerySetToDict(Item.objects.filter(
                 set_part='Druga ręka').values('name', 'img', 'pk'))
         return HttpResponse(json.dumps(items_json), content_type='application/javascript; charset=utf8')
-    return render(request, "user/creator.html")
+    context = {
+        'category_list': category_list,
+    }
+    return render(request, "user/creator.html", context)
 
 
 def item_spells(request):
@@ -93,10 +97,11 @@ def save_view(request):
     name_input = body_data['inputVal']
     category_build = body_data['category']
     name_qs = Build.objects.filter(name_build=name_input)
-    category_check = Build.objects.filter(category=category_build)
+    category_object = CategoryBuild.objects.get(id=category_build)
+    category_validation = Build.objects.filter(category=category_object)
     name_exist = False
 
-    for single_obj in category_check:
+    for single_obj in category_validation:
         if single_obj in list(name_qs):
             name_exist = True
 
@@ -108,7 +113,7 @@ def save_view(request):
         error_name = 'none'
         if 'offhand' in body_data:
             if 'chest_pasive_tank' in body_data:
-                Build.objects.create(name_build=name_input, category=category_build, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
+                Build.objects.create(name_build=name_input, category=category_object, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
                                     boots_id=body_data['boots'], hand_id=body_data['weapon'], off_hand_id=body_data[
                                         'offhand'], head_spell_id=body_data['head_spell'], chest_spell_id=body_data['chest_spell'],
                                     boots_spell_id=body_data['boots_spell'], weapon_spell_q_id=body_data[
@@ -116,7 +121,7 @@ def save_view(request):
                                     head_pasive_id=body_data['head_pasive'], chest_pasive_id=body_data['chest_pasive'], chest_pasive_tank_id=body_data['chest_pasive_tank'],
                                     boots_pasive_id=body_data['boots_pasive'], weapon_pasive_id=body_data['weapon_pasive'])
             else:
-                Build.objects.create(name_build=name_input, category=category_build, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
+                Build.objects.create(name_build=name_input, category=category_object, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
                                     boots_id=body_data['boots'], hand_id=body_data['weapon'], off_hand_id=body_data[
                                         'offhand'], head_spell_id=body_data['head_spell'], chest_spell_id=body_data['chest_spell'],
                                     boots_spell_id=body_data['boots_spell'], weapon_spell_q_id=body_data[
@@ -125,14 +130,14 @@ def save_view(request):
                                     boots_pasive_id=body_data['boots_pasive'], weapon_pasive_id=body_data['weapon_pasive'])
         else:
             if 'chest_pasive_tank' in body_data:
-                Build.objects.create(name_build=name_input, category=category_build, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
+                Build.objects.create(name_build=name_input, category=category_object, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
                                     boots_id=body_data['boots'], hand_id=body_data['weapon'],  head_spell_id=body_data['head_spell'], chest_spell_id=body_data['chest_spell'],
                                     boots_spell_id=body_data['boots_spell'], weapon_spell_q_id=body_data[
                                         'weapon_spell_q'], weapon_spell_w_id=body_data['weapon_spell_w'], weapon_spell_e_id=body_data['weapon_spell_e'],
                                     head_pasive_id=body_data['head_pasive'], chest_pasive_id=body_data['chest_pasive'], chest_pasive_tank_id=body_data['chest_pasive_tank'],
                                     boots_pasive_id=body_data['boots_pasive'], weapon_pasive_id=body_data['weapon_pasive'])
             else:
-                Build.objects.create(name_build=name_input, category=category_build, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
+                Build.objects.create(name_build=name_input, category=category_object, role_set=body_data['role_set'], head_id=body_data['head'], chest_id=body_data['chest'],
                                     boots_id=body_data['boots'], hand_id=body_data['weapon'], head_spell_id=body_data['head_spell'], chest_spell_id=body_data['chest_spell'],
                                     boots_spell_id=body_data['boots_spell'], weapon_spell_q_id=body_data[
                                         'weapon_spell_q'], weapon_spell_w_id=body_data['weapon_spell_w'], weapon_spell_e_id=body_data['weapon_spell_e'],
